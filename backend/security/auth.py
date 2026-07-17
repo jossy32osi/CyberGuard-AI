@@ -3,8 +3,10 @@ from jose import jwt
 from datetime import datetime, timedelta
 
 
-SECRET_KEY = "cyberguard-secret-key-change-later"
-ALGORITHM = "HS256"
+from backend.core.config import settings
+
+SECRET_KEY = settings.SECRET_KEY
+ALGORITHM = settings.ALGORITHM
 
 
 pwd_context = CryptContext(

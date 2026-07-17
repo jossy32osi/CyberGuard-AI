@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from backend.intelligence.nvd import search_cve
+from backend.services.intelligence_service import IntelligenceService
 
 
 router = APIRouter(
@@ -12,4 +12,4 @@ router = APIRouter(
 @router.get("/search/{keyword}")
 def search_vulnerability(keyword: str):
 
-    return search_cve(keyword)
+    return IntelligenceService.search_vulnerability(keyword)

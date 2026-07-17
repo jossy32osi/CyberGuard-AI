@@ -2,7 +2,9 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
 
-DATABASE_URL = "sqlite:///./cyberguard.db"
+from backend.core.config import settings
+
+DATABASE_URL = settings.DATABASE_URL
 
 
 engine = create_engine(

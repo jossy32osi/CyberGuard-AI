@@ -10,6 +10,7 @@ from backend.routes import threats
 from backend.routes import virustotal
 from backend.routes import abuseipdb
 from backend.routes import nvd
+from backend.routes import analyze
 
 
 Base.metadata.create_all(bind=engine)
@@ -28,6 +29,7 @@ app.include_router(threats.router)
 app.include_router(virustotal.router)
 app.include_router(abuseipdb.router)
 app.include_router(nvd.router)
+app.include_router(analyze.router)
 
 @app.get("/")
 def home():

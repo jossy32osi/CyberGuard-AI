@@ -1,7 +1,7 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from fastapi import HTTPException
 
+from backend.services.user_service import UserService
 from backend.database import get_db
 from backend.models.user import User
 from backend.schemas.user_schema import (
@@ -9,8 +9,10 @@ from backend.schemas.user_schema import (
     UserResponse,
     UserLogin
 )
-from backend.security.auth import hash_password
-from backend.security.auth import verify_password, create_access_token
+from backend.security.auth import (
+    verify_password,
+    create_access_token
+)
 
 
 router = APIRouter(
@@ -25,21 +27,11 @@ def create_user(
     db: Session = Depends(get_db)
 ):
 
-    hashed_password = hash_password(
-        user.password
+    return UserService.create_user(
+        db,
+        user
     )
 
-    new_user = User(
-        username=user.username,
-        email=user.email,
-        password=hashed_password
-    )
-
-    db.add(new_user)
-    db.commit()
-    db.refresh(new_user)
-
-    return new_user
 
 @router.post("/login")
 def login(
