@@ -1,8 +1,8 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.orm import declarative_base, sessionmaker
 
-from backend.config import DATABASE_URL
+
+DATABASE_URL = "sqlite:///./cyberguard.db"
 
 engine = create_engine(
     DATABASE_URL,
@@ -16,11 +16,3 @@ SessionLocal = sessionmaker(
 )
 
 Base = declarative_base()
-
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()

@@ -4,11 +4,12 @@
 # Python
 __pycache__/
 *.pyc
-*.pyo
-*.pyd
 
-# Environment Variables
+# Environment
 .env
+
+# Database
+*.db
 
 # VS Code
 .vscode/
@@ -18,9 +19,3 @@ __pycache__/
 
 # Logs
 *.log
-
-# SQLite
-*.db
-*.db
-__pycache__/
-.venv/
