@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 
-from backend.database import Base
-from backend.database import engine
+from backend.database.database import Base
+from backend.database.database import engine
 
 from backend.models.user import User
 from backend.routes import users
