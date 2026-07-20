@@ -1,27 +1,26 @@
 # Virtual Environment
 .venv/
 
-# Python
+# Python Cache
 __pycache__/
 *.pyc
 *.pyo
-*.pyd
 
 # Environment Variables
 .env
+backend/.env
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+logs/
 
 # VS Code
 .vscode/
 
 # macOS
 .DS_Store
-
-# Logs
-*.log
-
-# SQLite
-*.db
-*.db
-__pycache__/
-.venv/
-.env
