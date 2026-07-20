@@ -11,11 +11,18 @@ def search_cve(keyword: str):
         "resultsPerPage": 5
     }
 
+    try:
+        response = requests.get(
+            NVD_URL,
+            params=params,
+            timeout=10
+        )
 
-    response = requests.get(
-        NVD_URL,
-        params=params
-    )
+    except requests.exceptions.RequestException as e:
+        return {
+            "error": "Unable to connect to NVD",
+            "details": str(e)
+        }
 
 
     if response.status_code != 200:
@@ -27,7 +34,6 @@ def search_cve(keyword: str):
 
     data = response.json()
 
-
     vulnerabilities = []
 
 
@@ -35,9 +41,7 @@ def search_cve(keyword: str):
 
         cve = item["cve"]
 
-
         description = cve["descriptions"][0]["value"]
-
 
         vulnerabilities.append(
             {

@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 
-from backend.services.intelligence_service import IntelligenceService
+from backend.intelligence.abuseipdb import check_ip
+from backend.core.responses import success_response, error_response
 
 
 router = APIRouter(
@@ -12,4 +13,15 @@ router = APIRouter(
 @router.get("/ip/{ip}")
 def analyze_ip(ip: str):
 
-    return IntelligenceService.abuse_ipdb(ip)
+    result = check_ip(ip)
+
+    if isinstance(result, dict) and "error" in result:
+        return error_response(
+            "AbuseIPDB analysis failed",
+            "AbuseIPDB"
+        )
+
+    return success_response(
+        result,
+        "AbuseIPDB analysis completed"
+    )
